@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>অক্টোবর ২০২৬ — ডায়েট ট্র্যাকার</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef3ec;--card:#fff;--ink:#17301f;--mute:#5d7365;--line:#d9e3da;--hero1:#0f3d2c;--hero2:#1d6b4a;
+--low:#e8a912;--ok:#2563d8;--high:#d63c3c;--turmeric:#f2b632;--track:#e3ebe4;--part:#7f9a8a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a13;--card:#15271d;--ink:#e8f1ea;--mute:#98b0a0;--line:#25402f;--track:#223a2b;--ok:#5b94ff;--high:#ff6b6b;--low:#f4bf3a}}
+:root[data-theme="dark"]{--bg:#0d1a13;--card:#15271d;--ink:#e8f1ea;--mute:#98b0a0;--line:#25402f;--track:#223a2b;--ok:#5b94ff;--high:#ff6b6b;--low:#f4bf3a}
+html{font-size:100%}@media(min-width:900px){html{font-size:125%}}@media(min-width:1500px){html{font-size:140%}}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri","Noto Sans Bengali","Kalpurush",system-ui,sans-serif;line-height:1.6;font-size:1rem}
+.wrap{max-width:58rem;margin:0 auto;padding:0 16px 48px}
+.hero{background:radial-gradient(1200px 400px at 85% -10%,#2f9a6b55,transparent 60%),linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;border-radius:0 0 32px 32px;padding:36px 20px 90px}
+.hero .in{max-width:58rem;margin:0 auto}
+h1{font-family:"Tiro Bangla","Hind Siliguri",serif;font-weight:400;font-size:clamp(2.125rem,8vw,3.5rem);line-height:1.15;margin:0 0 8px}
+h1.name{font-size:clamp(2.5rem,11vw,4.75rem);line-height:1.1;margin:0 0 14px;text-wrap:balance}
+.month{font-family:"Tiro Bangla","Hind Siliguri",serif;font-size:clamp(1.5rem,5vw,2.125rem);margin:0 0 4px;color:var(--turmeric)}
+.sub{opacity:.85;margin:0 0 18px}
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:7px;background:#ffffff1f;border-radius:99px;padding:4px 12px;font-size:0.875rem}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+.goals{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:10px;margin-top:20px}
+.goal{background:#ffffff14;border:1px solid #ffffff26;border-radius:16px;padding:10px 14px}
+.goal b{display:block;font-size:1.375rem;font-weight:600}
+.goal span{font-size:0.8125rem;opacity:.8}
+.pull{margin-top:-60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 10px 30px -18px #0f3d2c66}
+.tabs{display:flex;gap:8px;margin-bottom:16px;overflow-x:auto}
+.tab{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 16px;border-radius:99px;cursor:pointer;white-space:nowrap;font-weight:500}
+.tab[aria-selected=true]{background:var(--hero1);color:#fff;border-color:var(--hero1)}
+.tab:focus-visible{outline:3px solid var(--ok);outline-offset:2px}
+.top{display:grid;grid-template-columns:12.5rem 1fr;gap:22px;align-items:center}
+@media(max-width:620px){.top{grid-template-columns:1fr;justify-items:center}.bars{width:100%}}
+.ring{position:relative;width:12.5rem;height:12.5rem}.ring svg{width:100%;height:100%}
+.ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .c b{font-size:2.375rem;line-height:1;font-weight:700}
+.ring .c span{font-size:0.8125rem;color:var(--mute)}
+.m{margin-bottom:14px}
+.m .h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.m .h b{font-weight:600}
+.m .h small{color:var(--mute)}
+.rb{position:relative;height:12px;border-radius:8px;background:var(--track);margin-top:6px}
+.band{position:absolute;top:0;bottom:0;border-radius:8px;background:color-mix(in srgb,var(--ok) 28%,transparent)}
+.mk{position:absolute;top:-4px;width:20px;height:20px;border-radius:50%;border:4px solid var(--card);transform:translateX(-50%);box-shadow:0 2px 6px #0005}
+h2{font-family:"Tiro Bangla","Hind Siliguri",serif;font-weight:400;font-size:1.625rem;margin:34px 0 12px}
+.meal{display:grid;grid-template-columns:5rem 1fr;gap:14px;padding:14px 0;border-top:1px dashed var(--line)}
+.meal:first-child{border-top:0}
+.t{font-weight:600;color:var(--hero2);background:color-mix(in srgb,var(--turmeric) 22%,transparent);border-radius:12px;height:fit-content;text-align:center;padding:4px 0}
+.meal p{margin:0 0 6px;font-weight:500}
+.n{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:0.875rem;color:var(--mute)}
+.n i{font-style:normal;display:inline-flex;align-items:center;gap:5px}
+.n i:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+.mat{overflow-x:auto}
+table{border-collapse:separate;border-spacing:6px;width:100%;min-width:26rem;text-align:center}
+th{font-weight:500;color:var(--mute);font-size:0.875rem}
+td.d{text-align:left;font-weight:600;white-space:nowrap}
+td.s{border-radius:14px;padding:10px 6px;color:#fff;font-weight:600}
+td.s small{display:block;font-weight:400;font-size:0.75rem;opacity:.92}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal div{aspect-ratio:1;border-radius:14px;background:var(--track);display:flex;align-items:center;justify-content:center;font-weight:500;color:var(--mute)}
+.cal .on{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;cursor:pointer}
+.cal .on:focus-visible{outline:3px solid var(--turmeric)}
+.cal .h{background:none;aspect-ratio:auto;font-size:0.8125rem}
+.note{color:var(--mute);font-size:0.875rem;margin-top:28px;text-align:center}
+</style>
+</head>
+<body>
+<header class="hero"><div class="in">
+<h1 class="name">শহীদুল্লাহ'র ডায়েট ট্র্যাকিং</h1>
+<p class="month">অক্টোবর ২০২৬</p>
+<p class="sub">দৈনিক ডায়েট ট্র্যাকার — প্রতিদিনের খাবার ও পুষ্টির হিসাব</p>
+<div class="legend">
+<span class="chip"><span class="dot" style="background:var(--low)"></span>কম</span>
+<span class="chip"><span class="dot" style="background:var(--ok)"></span>টার্গেটের মধ্যে</span>
+<span class="chip"><span class="dot" style="background:var(--high)"></span>সর্বোচ্চ সীমার ওপরে</span>
+</div>
+<div class="goals">
+<div class="goal"><b>~১,৬০০</b><span>ক্যালরি</span></div>
+<div class="goal"><b>৯০–১১০</b><span>প্রোটিন (গ্রাম)</span></div>
+<div class="goal"><b>১৫০–১৮০</b><span>কার্ব (গ্রাম)</span></div>
+<div class="goal"><b>২৫–৩০</b><span>ফাইবার (গ্রাম)</span></div>
+</div>
+</div></header>
+
+<main class="wrap pull">
+<section class="card" aria-label="দিনের বিস্তারিত">
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="top">
+<div class="ring" id="ring"></div>
+<div class="bars" id="bars"></div>
+</div>
+<h2 id="mt">খাবারের তালিকা</h2>
+<div id="meals"></div>
+</section>
+
+<h2>দিনভিত্তিক এক নজরে</h2>
+<section class="card mat"><table id="mat"></table></section>
+
+<h2>অক্টোবরের ক্যালেন্ডার</h2>
+<section class="card"><div class="cal" id="cal"></div></section>
+<p class="note">ফাইবারের হিসাব খাবারের পরিমাণ অনুযায়ী আনুমানিক। ০৪ অক্টোবরের রাতের খাবার যোগ করে দিনের মোট আপডেট করা হয়েছে। ০৫ অক্টোবরের হিসাব দিন চলমান, তাই এখন পর্যন্ত খাওয়া খাবার অনুযায়ী।</p>
+</main>
+
+<script>
+const bn=s=>String(s).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+const G={cal:{n:"ক্যালরি",u:"",min:1500,max:1700,max2:2200},p:{n:"প্রোটিন",u:" গ্রাম",min:90,max:110,max2:140},c:{n:"কার্ব",u:" গ্রাম",min:150,max:180,max2:230},f:{n:"ফাইবার",u:" গ্রাম",min:25,max:30,max2:40}};
+const D={
+2:{tot:{cal:1520,p:94,c:120,f:10},m:[
+["সকাল","১০০ ভাত + ২ পিস ইলিশ + আলু/ঝিঙা ভাজি + ১টি সেদ্ধ ডিম","500–630","29–37","45–55","3–5"],
+["দুপুর","১০০ ভাত + করলা ভাজি + আলুসহ ছোট মাছ ভুনা","430–560","23–31","45–55","4–6"],
+["রাত","৫০–৮০ ভাত + ছোট ইলিশ + ছোট চিংড়ি কারি + আধা গ্লাস দুধ/ক্রিম + ১টি সেদ্ধ ডিম","385–535","29–38","24–35","1–2"]]},
+3:{tot:{cal:1290,p:74,c:155,f:15},m:[
+["সকাল","৮০ ভাত + মাছের ঝোল/ঘাটা (আলু না খেয়ে) + ১টি সেদ্ধ ডিম","275–325","20–25","24–26","1–2"],
+["স্ন্যাক","১৫০ পেয়ারা","100–105","4","21–22","8"],
+["দুপুর","১০০ ভাত + ১০০ মুরগি + ৫০ লাউ ভাজি","330–370","28–34","31–32","2–3"],
+["সন্ধ্যা","১টি মাঝারি কলা + কমলার ৪ কোয়া","120–135","2","32–34","3–4"],
+["রাত","১০০ ভাত + পটল/পেঁয়াজ ভাজি + আধা গ্লাস দুধ + ১টি সেদ্ধ ডিম","375–445","13–15","41–46","2–3"]]},
+4:{tot:{cal:1535,p:97.5,c:178,f:24},m:[
+["সকাল","১০০ ভাত + বড় ১ পিস রুই মাছ ও ঝোল + ৩০ পটল ভুনা + ১টি সেদ্ধ ডিম","410–470","35–40","34–36","2–3"],
+["দুপুর","১০০ ভাত + ৩ পিস মুরগি + ৩০ শসা","315–355","28–33","29–31","0.5–1"],
+["বিকেল","১টি মাঝারি কলা + ১টি সেদ্ধ হাঁসের ডিম + ১৫০ সেদ্ধ ছোলা","465–490","23","68–70","14–15"],
+["রাত","১০০ ভাত + ১০০ শসা-গাজরের সালাদ + ৩০ ঢেঁড়স ভর্তা + ১০০ লাল শাক ভাজি","250–300","6–7","42–47","5–7"]]},
+5:{part:1,tot:{cal:1180,p:64,c:162,f:22},m:[
+["সকাল","১০০ ভাত + ২টি টেংরা মাছ + মাছের ঝোল + ১০০ মূলা শাক ও লাল শাক + ১০০ শসা-গাজরের সালাদ","360–410","25–30","42–47","5.5–7"],
+["দুপুর ১২টা","১টি মাঝারি কলা + ১টি ডিমের সাদা অংশ","122","4.8","27","3"],
+["দুপুর","১০০ ভাত + ১০০ ml দুধ + ৩০ মূলা শাক + ১টি ছোট টেংরা মাছ ও ঝোল","270–290","13–15","36–37","1.6"],
+["বিকেল","১টি মাঝারি আপেল","95","0.5","25","4"],
+["সন্ধ্যা","১টি সেদ্ধ হাঁসের ডিম + ১০০ হোটেলের ছোলাবুট","290–310","17–18","26–31","7–8"]]}
+};
+const shown={cal:"~"+bn(1520)};
+const st=(k,v)=>{const g=G[k];if(k==="cal")return v<1450?"low":v>1750?"high":"ok";return v<g.min?"low":v>g.max?"high":"ok"};
+const col=s=>`var(--${s})`;
+const lbl={part:"এখন পর্যন্ত",low:"কম",ok:"টার্গেটের মধ্যে",high:"সীমার ওপরে"};
+let cur=5;
+function render(){
+ const d=D[cur],t=d.tot;
+ document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.d==cur));
+ const part=!!d.part,S=(k,v)=>part?"part":st(k,v);const s=S("cal",t.cal),R=84,C=2*Math.PI*R,pct=Math.min(t.cal/1600,1);
+ document.getElementById("ring").innerHTML=`<svg viewBox="0 0 200 200" ><circle cx="100" cy="100" r="${R}" fill="none" stroke="var(--track)" stroke-width="16"/><circle cx="100" cy="100" r="${R}" fill="none" stroke="${col(s)}" stroke-width="16" stroke-linecap="round" stroke-dasharray="${C*pct} ${C}" transform="rotate(-90 100 100)"/></svg><div class="c"><b>${bn(t.cal.toLocaleString("en"))}</b><span>ক্যালরি / ~১,৬০০</span><span style="color:${col(s)};font-weight:600">${lbl[s]}</span></div>`;
+ let h="";
+ for(const k of ["p","c","f"]){
+  const g=G[k],v=t[k],q=S(k,v),pos=Math.min(v/g.max2,1)*100;
+  h+=`<div class="m"><div class="h"><b>${g.n}</b><small>${bn(v)}${g.u} · লক্ষ্য ${bn(g.min)}–${bn(g.max)}</small></div><div class="rb"><div class="band" style="left:${g.min/g.max2*100}%;width:${(g.max-g.min)/g.max2*100}%"></div><div class="mk" style="left:${pos}%;background:${col(q)}"></div></div></div>`;
+ }
+ document.getElementById("bars").innerHTML=h;
+ document.getElementById("mt").textContent=bn(cur)+" অক্টোবরের খাবার";
+ document.getElementById("meals").innerHTML=d.m.map(x=>`<div class="meal"><div class="t">${x[0]}</div><div><p>${x[1]}</p><div class="n"><i style="--c:var(--turmeric)">${bn(x[2])} ক্যালরি</i><i style="--c:#c8553d">প্রোটিন ${bn(x[3])}</i><i style="--c:var(--ok)">কার্ব ${bn(x[4])}</i><i style="--c:#2f9a6b">ফাইবার ${bn(x[5])}</i></div></div></div>`).join("");
+}
+document.getElementById("tabs").innerHTML=[2,3,4,5].map(n=>`<button class="tab" role="tab" data-d="${n}">${bn("০"+n).replace("০০","০")} অক্টোবর</button>`).join("");
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{cur=+b.dataset.d;render()});
+let m="<tr><th></th>"+Object.values(G).map(g=>`<th>${g.n}</th>`).join("")+"</tr>";
+for(const n of [2,3,4,5]){m+=`<tr><td class="d">${bn("০"+n)} অক্টো</td>`+Object.keys(G).map(k=>{const v=D[n].tot[k],q=D[n].part?"part":st(k,v);return `<td class="s" style="background:${col(q)}">${bn(v)}<small>${lbl[q]}</small></td>`}).join("")+"</tr>"}
+document.getElementById("mat").innerHTML=m;
+let c="";["র","সো","ম","বু","বৃ","শু","শ"].forEach(x=>c+=`<div class="h">${x}</div>`);
+// 1 Oct 2026 is Thursday -> 4 blanks
+for(let i=0;i<4;i++)c+="<div class='h'></div>";
+for(let i=1;i<=31;i++){const on=D[i];c+=on?`<div class="on" tabindex="0" role="button" data-d="${i}">${bn(i)}</div>`:`<div>${bn(i)}</div>`}
+document.getElementById("cal").innerHTML=c;
+document.querySelectorAll(".cal .on").forEach(e=>{const f=()=>{cur=+e.dataset.d;render();window.scrollTo({top:0,behavior:"smooth"})};e.onclick=f;e.onkeydown=ev=>{if(ev.key==="Enter")f()}});
+render();
+</script>
+</body>
+</html>
